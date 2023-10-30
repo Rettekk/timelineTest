@@ -3,10 +3,7 @@ let url = 'http://localhost:8080/https://feeds.feedburner.com/VideoCardzcom';
 async function updateTimeline() {
     try {
         let parser = new RSSParser();
-
         const videocardzFeed = await parser.parseURL(url);
-        console.log(videocardzFeed);
-
         const sortedItems = videocardzFeed.items.sort((a, b) => new Date(b.pubDate) - new Date(a.pubDate));
         const lastTenItems = sortedItems.slice(0, 10);
 
@@ -48,7 +45,7 @@ async function updateTimeline() {
     }
 }
 
-updateTimeline().then(() => console.log('Updated timeline'));
+updateTimeline().then(r => r);
 
 async function fetchAndParseImageURL(articleURL) {
     try {
